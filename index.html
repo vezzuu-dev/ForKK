@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>for KK</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Playfair+Display&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+overflow:hidden;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffdde1,#fbc2eb);
+background-size:400% 400%;
+animation:gradient 15s ease infinite;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+@keyframes gradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+text-align:center;
+z-index:2;
+max-width:600px;
+padding:20px;
+}
+
+h1{
+font-family:'Playfair Display',serif;
+font-size:2.8rem;
+margin-bottom:15px;
+}
+
+p{
+font-size:1.2rem;
+line-height:1.6;
+}
+
+button{
+padding:12px 28px;
+font-size:1rem;
+border:none;
+border-radius:25px;
+cursor:pointer;
+margin:15px;
+transition:0.3s;
+}
+
+#openBtn{
+background:white;
+color:#ff6f91;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+.heart{
+position:absolute;
+bottom:-20px;
+animation:float 7s linear infinite;
+}
+
+@keyframes float{
+from{transform:translateY(0);opacity:1;}
+to{transform:translateY(-110vh);opacity:0;}
+}
+
+#letter{
+margin-top:25px;
+display:none;
+animation:fade 1.5s ease forwards;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+#finalScreen{
+position:fixed;
+inset:0;
+background:linear-gradient(45deg,#ff9a9e,#fbc2eb);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+opacity:0;
+pointer-events:none;
+transition:1s;
+padding:30px;
+}
+
+#finalScreen.show{
+opacity:1;
+pointer-events:all;
+}
+
+.small{
+font-size:1rem;
+margin-top:15px;
+opacity:0.9;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1 id="typing"></h1>
+
+<p>
+There’s something I’ve always felt —  
+and you already know it.  
+But sometimes feelings deserve a little more than just words in conversation.
+</p>
+
+<button id="openBtn">Open this 💌</button>
+
+<div id="letter">
+<p>
+KK,  
+I don’t need labels. I don’t need pressure.  
+I just need you to know that what I feel is real.  
+
+Not dramatic. Not forced.  
+Just something steady and honest.  
+
+You matter to me — more than you probably realize.  
+And whether life changes things or keeps them the same,  
+I’m grateful you exist in my world.
+</p>
+
+<p class="small">
+No expectations. Just sincerity. 💖
+</p>
+
+<button id="finalBtn">One last thing ✨</button>
+</div>
+
+</div>
+
+<div id="finalScreen">
+<h1>You are genuinely special to me.</h1>
+<div class="small">
+And that’s all this ever needed to say.
+</div>
+</div>
+
+<script>
+
+// Typing intro
+const text="Hey KK 💖";
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,100);
+}}
+type();
+
+// Floating hearts
+function heart(){
+const h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(15+Math.random()*20)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),7000);
+}
+setInterval(heart,400);
+
+// Open letter
+document.getElementById("openBtn").onclick=()=>{
+document.getElementById("letter").style.display="block";
+};
+
+// Final reveal
+document.getElementById("finalBtn").onclick=()=>{
+document.getElementById("finalScreen").classList.add("show");
+};
+
+</script>
+
+</body>
+</html>
